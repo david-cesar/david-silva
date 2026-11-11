@@ -1,8 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import RotatingText from '../../components/RotatingText.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts, postHref } from '../../lib/blog';
 
 const roles = ['engenheiro de software', 'professor', 'mestre de RPG'];
+
+const posts = await getPosts('pt');
+const latest = posts.slice(0, 3);
+const rest = posts.slice(3);
 ---
 
 <BaseLayout lang="pt-BR">
@@ -17,11 +23,63 @@ const roles = ['engenheiro de software', 'professor', 'mestre de RPG'];
     O fio que liga tudo isso é o mesmo: gosto de transformar complexidade em algo
     claro o bastante para entregar na mão de outra pessoa.
   </p>
+
+  {
+    latest.length > 0 && (
+      <section>
+        <h2>Últimas postagens</h2>
+        {latest.map((post) => (
+          <PostCard
+            href={postHref(post.id, 'pt')}
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            tags={post.data.tags}
+            lang="pt"
+          />
+        ))}
+      </section>
+    )
+  }
+
+  {
+    rest.length > 0 && (
+      <section>
+        <h2>Posts</h2>
+        <ul class="post-list">
+          {rest.map((post) => (
+            <li>
+              <a href={postHref(post.id, 'pt')}>{post.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
 </BaseLayout>
 
 <style>
   .hero {
     font-size: var(--text-2xl);
     margin-bottom: var(--space-5);
+  }
+  section {
+    margin-top: var(--space-6);
+  }
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .post-list li {
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .post-list a {
+    color: var(--text);
+  }
+  .post-list a:hover {
+    color: var(--accent);
+    text-decoration: none;
   }
 </style>
