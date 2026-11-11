@@ -1,0 +1,40 @@
+---
+// Language toggle: links the current page to its counterpart in the other locale.
+// EN lives at root (/...), PT lives under /pt/...
+const path = Astro.url.pathname;
+const isPt = path === '/pt' || path.startsWith('/pt/');
+
+// Build the counterpart path.
+let target: string;
+let label: string;
+if (isPt) {
+  // strip leading /pt → EN
+  target = path.replace(/^\/pt/, '') || '/';
+  label = 'EN';
+} else {
+  target = '/pt' + (path === '/' ? '/' : path);
+  label = 'PT';
+}
+---
+
+<a class="lang-toggle" href={target} aria-label={`Switch to ${label}`}>{label}</a>
+
+<style>
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.4rem 0.55rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .lang-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+</style>
