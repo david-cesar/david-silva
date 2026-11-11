@@ -40,6 +40,10 @@ manually.
 
 ## Code conventions
 
+- **No emojis in site pages or content.** Headlines, body text, home, blog
+  posts, and UI use clean SVG icons (stroke style) instead of emoji — never
+  decorative emoji. This applies to rendered pages; it does not restrict commit
+  messages or internal docs.
 - **Static content** → `.astro` / `.md`. Reach for a **React island** (`client:*`)
   only for genuinely interactive pieces; never for static layout. Keep JS shipped to
   the browser near zero.
