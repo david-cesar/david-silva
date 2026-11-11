@@ -1,0 +1,90 @@
+---
+// Rotating text with a slow fade in/out. Falls back to a static first item when
+// JS is off or when the user prefers reduced motion. The first item can linger
+// longer than the rest via `firstHoldMs`.
+interface Props {
+  items: string[];
+  intervalMs?: number;
+  firstHoldMs?: number;
+  fadeMs?: number;
+}
+const {
+  items,
+  intervalMs = 2600,
+  firstHoldMs = 4200,
+  fadeMs = 600,
+} = Astro.props;
+---
+
+<span
+  class="rotating"
+  data-rotating
+  data-interval={intervalMs}
+  data-first-hold={firstHoldMs}
+  data-items={JSON.stringify(items)}
+  style={`--fade-ms:${fadeMs}ms`}
+>
+  <span class="word" data-word>{items[0]}</span>
+</span>
+
+<style>
+  .rotating {
+    color: var(--accent);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .word {
+    display: inline-block;
+    opacity: 1;
+    transition: opacity var(--fade-ms) cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .word.is-out {
+    opacity: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .word {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const prefersReduced = window.matchMedia(
+    '(prefers-reduced-motion: reduce)',
+  ).matches;
+
+  document.querySelectorAll<HTMLElement>('[data-rotating]').forEach((root) => {
+    const wordEl = root.querySelector<HTMLElement>('[data-word]');
+    if (!wordEl) return;
+
+    let items: string[] = [];
+    try {
+      items = JSON.parse(root.dataset.items ?? '[]');
+    } catch {
+      return;
+    }
+    if (prefersReduced || items.length < 2) return;
+
+    const interval = Number(root.dataset.interval) || 2600;
+    const firstHold = Number(root.dataset.firstHold) || interval;
+    let i = 0;
+
+    const advance = () => {
+      wordEl.classList.add('is-out');
+      const onEnd = () => {
+        wordEl.removeEventListener('transitionend', onEnd);
+        i = (i + 1) % items.length;
+        wordEl.textContent = items[i];
+        wordEl.classList.remove('is-out');
+        // Hold the first item longer than the others.
+        schedule(i === 0 ? firstHold : interval);
+      };
+      wordEl.addEventListener('transitionend', onEnd);
+    };
+
+    const schedule = (delay: number) => setTimeout(advance, delay);
+
+    // Start by holding the first item for the longer duration.
+    schedule(firstHold);
+  });
+</script>

@@ -1,16 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import RotatingText from '../components/RotatingText.astro';
+
+const roles = [
+  'software engineer',
+  'teacher',
+  'dungeon master',
+  '3D printing enthusiast',
+];
 ---
 
 <BaseLayout>
-  <h1>David Silva</h1>
+  <h1 class="hero">
+    David Silva, a <RotatingText items={roles} />
+  </h1>
   <p>
     I build AI systems that run in production, the multi-agent kind, where the
     hard part is getting many moving pieces to behave.
   </p>
   <p>
-    I am also a teacher, a tabletop RPG dungeon master, and a 3D printing
-    enthusiast. The thread between all of it is the same: I like turning
-    complexity into something clear enough to hand to another person.
+    The thread between all of it is the same: I like turning complexity into
+    something clear enough to hand to another person.
   </p>
 </BaseLayout>
+
+<style>
+  .hero {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-5);
+  }
+</style>
