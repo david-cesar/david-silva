@@ -38,6 +38,23 @@ npm run preview  # preview the production build
 Deploy is automated via GitHub Actions on push to `main` (guide §8). Do not deploy
 manually.
 
+## Design system
+
+Decided deliberately; keep new UI consistent with it.
+
+- **Typography:** serif body (`--font-body`), sans-serif for headings and UI
+  (`--font-ui`). Sizes come from the `--text-*` scale, never hardcoded.
+- **Spacing:** use the `--space-1`…`--space-7` scale for margins/padding; do not
+  invent one-off rem values.
+- **Color:** only `--*` CSS variables from `global.css` (theme-aware). No hardcoded
+  hex in components. Palette is Tormenta 20 (see `global.css` header comment).
+- **Header:** home icon (left) + nav (Blog, About) + LangToggle + ThemeToggle
+  (right). No bottom border — separated by whitespace (`--space-7`). Active nav
+  item gets a Copper underline via `.active`.
+- **Icons:** stroke-style SVG (`stroke="currentColor"`), never emoji.
+- **Transitions:** use `--transition` for hover/color changes (smooth, subtle).
+- **Width:** reading column capped at `--measure` (720px).
+
 ## Code conventions
 
 - **No emojis in site pages or content.** Headlines, body text, home, blog
