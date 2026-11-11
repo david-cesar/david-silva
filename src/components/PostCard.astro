@@ -1,0 +1,51 @@
+---
+import TagList from './TagList.astro';
+import { formatDate, type Lang } from '../lib/blog';
+
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+  tags: string[];
+  lang: Lang;
+}
+
+const { href, title, description, pubDate, tags, lang } = Astro.props;
+---
+
+<article class="card">
+  <h2><a href={href}>{title}</a></h2>
+  <p class="meta">
+    <time datetime={pubDate.toISOString()}>{formatDate(pubDate, lang)}</time>
+  </p>
+  <p class="desc">{description}</p>
+  <TagList tags={tags} />
+</article>
+
+<style>
+  .card {
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .card h2 {
+    margin: 0 0 var(--space-1);
+    font-size: var(--text-lg);
+  }
+  .card h2 a {
+    color: var(--text);
+  }
+  .card h2 a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .meta {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--muted);
+    margin: 0 0 var(--space-2);
+  }
+  .desc {
+    margin: 0 0 var(--space-3);
+  }
+</style>
