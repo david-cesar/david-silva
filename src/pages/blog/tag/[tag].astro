@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { getPosts, getTags, tagSlug, postHref } from '../../../lib/blog';
+
+export async function getStaticPaths() {
+  const tags = await getTags('en');
+  const posts = await getPosts('en');
+  return tags.map(({ tag, slug }) => ({
+    params: { tag: slug },
+    props: {
+      tag,
+      posts: posts.filter((p) => p.data.tags.some((t) => tagSlug(t) === slug)),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`Posts tagged "${tag}" · David Silva`}
+  description={`Posts tagged ${tag}.`}
+>
+  <p class="crumb"><a href="/blog/">← Blog</a></p>
+  <h1>Tagged: {tag}</h1>
+  {
+    posts.map((post) => (
+      <PostCard
+        href={postHref(post.id, 'en')}
+        title={post.data.title}
+        description={post.data.description}
+        pubDate={post.data.pubDate}
+        tags={post.data.tags}
+        lang="en"
+      />
+    ))
+  }
+</BaseLayout>
+
+<style>
+  .crumb {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-3);
+  }
+</style>

@@ -20,7 +20,7 @@ const { href, title, description, pubDate, tags, lang } = Astro.props;
     <time datetime={pubDate.toISOString()}>{formatDate(pubDate, lang)}</time>
   </p>
   <p class="desc">{description}</p>
-  <TagList tags={tags} />
+  <TagList tags={tags} lang={lang} />
 </article>
 
 <style>

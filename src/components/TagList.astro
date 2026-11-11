@@ -1,15 +1,20 @@
 ---
+import { tagHref, type Lang } from '../lib/blog';
+
 interface Props {
   tags: string[];
+  lang: Lang;
 }
-const { tags } = Astro.props;
+const { tags, lang } = Astro.props;
 ---
 
 {
   tags.length > 0 && (
     <ul class="tags">
       {tags.map((tag) => (
-        <li>{tag}</li>
+        <li>
+          <a href={tagHref(tag, lang)}>{tag}</a>
+        </li>
       ))}
     </ul>
   )
@@ -26,11 +31,18 @@ const { tags } = Astro.props;
     font-family: var(--font-ui);
     font-size: var(--text-sm);
   }
-  .tags li {
+  .tags a {
+    display: inline-block;
     color: var(--accent);
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 0.1rem var(--space-2);
+    text-decoration: none;
+    transition: border-color var(--transition), color var(--transition);
+  }
+  .tags a:hover {
+    border-color: var(--accent);
+    text-decoration: none;
   }
 </style>
