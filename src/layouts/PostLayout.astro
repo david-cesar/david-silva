@@ -1,7 +1,8 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import TagList from '../components/TagList.astro';
-import { formatDate, type Lang } from '../lib/blog';
+import PostFooter from '../components/PostFooter.astro';
+import { formatDate, blogBase, type Lang } from '../lib/blog';
 
 interface Props {
   title: string;
@@ -10,14 +11,19 @@ interface Props {
   updatedDate?: Date;
   tags: string[];
   lang: Lang;
+  linkedinUrl?: string;
 }
 
-const { title, description, pubDate, updatedDate, tags, lang } = Astro.props;
+const { title, description, pubDate, updatedDate, tags, lang, linkedinUrl } =
+  Astro.props;
 const htmlLang = lang === 'pt' ? 'pt-BR' : 'en';
 ---
 
 <BaseLayout title={`${title} · David Silva`} description={description} lang={htmlLang}>
   <article>
+    <p class="top-back">
+      <a href={`${blogBase(lang)}/`}>{lang === 'pt' ? '← Voltar ao blog' : '← Back to blog'}</a>
+    </p>
     <header class="post-header">
       <h1>{title}</h1>
       <p class="meta">
@@ -33,15 +39,21 @@ const htmlLang = lang === 'pt' ? 'pt-BR' : 'en';
           )
         }
       </p>
-      <TagList tags={tags} />
+      <TagList tags={tags} lang={lang} />
     </header>
     <div class="prose">
       <slot />
     </div>
+    <PostFooter title={title} lang={lang} linkedinUrl={linkedinUrl} />
   </article>
 </BaseLayout>
 
 <style>
+  .top-back {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    margin: 0 0 var(--space-4);
+  }
   .post-header {
     margin-bottom: var(--space-6);
   }

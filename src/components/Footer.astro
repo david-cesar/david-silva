@@ -1,4 +1,9 @@
 ---
+import { getLangFromPath } from '../i18n/ui';
+
+const lang = getLangFromPath(Astro.url.pathname);
+const heading = lang === 'pt' ? 'Contatos' : 'Contacts';
+
 // Social links. Visible text labels with functional URLs behind them.
 const links = [
   {
@@ -20,6 +25,7 @@ const links = [
 ---
 
 <footer>
+  <h2 class="heading">{heading}</h2>
   <ul>
     {
       links.map((l) => (
@@ -45,26 +51,35 @@ const links = [
 
 <style>
   footer {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
+    margin-top: var(--space-7);
+    padding-top: var(--space-5);
     border-top: 1px solid var(--border);
+  }
+  .heading {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 0 0 var(--space-3);
   }
   ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 1.25rem;
+    gap: var(--space-5);
     flex-wrap: wrap;
   }
   a {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: var(--space-2);
     color: var(--muted);
     text-decoration: none;
-    font-family: ui-sans-serif, system-ui, sans-serif;
-    font-size: 0.9rem;
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    transition: color var(--transition);
   }
   a:hover {
     color: var(--accent);

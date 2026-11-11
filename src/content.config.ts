@@ -10,6 +10,8 @@ const postSchema = z.object({
   draft: z.boolean().default(false),
   // Shared key linking the EN and PT versions of the same post.
   translationKey: z.string().optional(),
+  // URL of the matching LinkedIn post, if published there.
+  linkedinUrl: z.string().url().optional(),
 });
 
 const blogEn = defineCollection({
