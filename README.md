@@ -3,8 +3,8 @@
 Source for my personal website — a technical blog, project portfolio, and
 professional hub, served at **[davidsilva.site](https://davidsilva.site)**.
 
-> **Status:** Planning / docs phase. The design is decided and documented; the
-> Astro site itself has not been scaffolded yet.
+> **Status:** In development. Astro site scaffolded and building; Home, Blog, and
+> the first post (the AI Glossary) are in place. About page and deploy are next.
 
 ## Overview
 

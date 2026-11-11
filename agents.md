@@ -14,7 +14,11 @@ professional hub. Minimalist editorial design, bilingual (English at root `/`,
 Brazilian Portuguese at `/pt/`), light/dark theme. Built with **Astro** (static
 output), hosted on **GitHub Pages** with the custom domain `davidsilva.site`.
 
-**Current status:** docs/planning phase — the Astro site is not scaffolded yet.
+**Current status:** Astro project scaffolded and building. Fase 1 nearly done
+(Home, Blog listing, post pages, tags with filter, share/comment footer, one
+published post: the AI Glossary). Still missing: About page, deploy to GitHub
+Pages, and the SEO/quality pass. See `guia-implementacao-site.md` §9 for the
+live checklist.
 
 ## Project docs
 
@@ -26,17 +30,15 @@ output), hosted on **GitHub Pages** with the custom domain `davidsilva.site`.
 
 ## Commands
 
-> Available only after the Astro project is scaffolded (guide §9).
-
 ```bash
 npm install
-npm run dev      # local dev server
+npm run dev      # local dev server (http://localhost:4321)
 npm run build    # static build → dist/
 npm run preview  # preview the production build
 ```
 
-Deploy is automated via GitHub Actions on push to `main` (guide §8). Do not deploy
-manually.
+Deploy is automated via GitHub Actions on push to `main` (guide §8, not set up
+yet). Do not deploy manually.
 
 ## Design system
 
@@ -63,9 +65,17 @@ Decided deliberately; keep new UI consistent with it.
   messages or internal docs.
 - **Static content** → `.astro` / `.md`. Reach for a **React island** (`client:*`)
   only for genuinely interactive pieces; never for static layout. Keep JS shipped to
-  the browser near zero.
+  the browser near zero. The home rotating text and the copy-link button are the
+  only inline scripts so far.
 - **Posts** live in `src/content/blog-en/` and `src/content/blog-pt/` as markdown.
-  Link an EN↔PT pair with a shared `translationKey` in frontmatter.
+  Link an EN↔PT pair with a shared `translationKey` in frontmatter. Optional
+  `linkedinUrl` adds a "Comment on LinkedIn" button to the post footer. Keep a
+  post `draft: true` until ready; drafts are excluded from production builds and
+  routes but visible in `npm run dev`.
+- **Blog helpers** live in `src/lib/blog.ts` (`getPosts`, `getTags`, `tagSlug`,
+  `postHref`, `tagHref`, `blogBase`, `formatDate`). Use these instead of building
+  paths or sorting by hand. Tags are clickable and generate `/blog/tag/[tag]/`
+  pages (and the PT mirror).
 - **i18n:** English is the default locale with no prefix (`/`, `/blog/`); Portuguese
   lives under `/pt/`. UI strings go in `src/i18n/ui.ts` — never hardcode user-facing
   text in components.
