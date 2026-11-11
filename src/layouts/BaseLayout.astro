@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
-import ThemeToggle from '../components/ThemeToggle.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title?: string;
@@ -34,14 +35,10 @@ const {
     </script>
   </head>
   <body>
-    <header
-      style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;"
-    >
-      <a href="/" style="font-weight:600; font-size:1.1rem;">David Silva</a>
-      <ThemeToggle />
-    </header>
+    <Header />
     <main>
       <slot />
     </main>
+    <Footer />
   </body>
 </html>
