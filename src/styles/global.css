@@ -1,0 +1,65 @@
+/* ------------------------------------------------------------------ *
+ * Theme — palette derived from Tormenta 20 (RPG reference)
+ *   503B4D Mauve Shadow · CDB3AC Almond Silk
+ *   DDD8DE Alabaster Grey · B45840 Rosy Copper
+ * Starting point — tweak live in the browser.
+ * ------------------------------------------------------------------ */
+
+:root {
+  /* Light mode */
+  --bg: #ddd8de;          /* Alabaster Grey */
+  --surface: #e8e4e9;     /* slightly lighter than bg for cards */
+  --text: #503b4d;        /* Mauve Shadow */
+  --muted: #7a6b76;       /* muted mauve */
+  --accent: #b45840;      /* Rosy Copper — links / tags */
+  --accent-soft: #cdb3ac; /* Almond Silk — soft borders / hovers */
+  --border: #c9c3cb;
+  --code-bg: #e8e4e9;
+}
+
+:root[data-theme='dark'] {
+  /* Dark mode — starting from Mauve Shadow; darken live if too light */
+  --bg: #2e2234;          /* darkened Mauve for contrast */
+  --surface: #3a2c42;
+  --text: #ddd8de;        /* Alabaster Grey */
+  --muted: #a99bab;
+  --accent: #c97a5f;      /* lifted Copper for dark contrast */
+  --accent-soft: #cdb3ac;
+  --border: #4a3a52;
+  --code-bg: #3a2c42;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-serif, Georgia, 'Times New Roman', serif;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  line-height: 1.65;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.25;
+}
+
+code {
+  background: var(--code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}

@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import ThemeToggle from '../components/ThemeToggle.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+}
+
+const {
+  title = 'David Silva',
+  description = 'Software engineer, teacher, dungeon master, and 3D printing enthusiast.',
+  lang = 'en',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- Anti-flash: set theme before first paint -->
+    <script is:inline>
+      const saved = localStorage.getItem('theme');
+      const system = matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+      document.documentElement.dataset.theme = saved || system;
+    </script>
+  </head>
+  <body>
+    <header
+      style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;"
+    >
+      <a href="/" style="font-weight:600; font-size:1.1rem;">David Silva</a>
+      <ThemeToggle />
+    </header>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
