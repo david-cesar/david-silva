@@ -24,7 +24,18 @@ const blogPt = defineCollection({
   schema: postSchema,
 });
 
+// Editable page copy (About, RPG, home bio). Files named `<page>.<lang>.md`
+// (e.g. about.en.md, about.pt.md). Edit the prose here, not in the .astro.
+const pages = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
+  schema: z.object({
+    title: z.string().optional(),
+    description: z.string().optional(),
+  }),
+});
+
 export const collections = {
   'blog-en': blogEn,
   'blog-pt': blogPt,
+  pages,
 };

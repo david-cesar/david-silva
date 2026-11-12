@@ -1,45 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPage } from '../lib/pages';
+
+const { Content, data } = await getPage('rpg', 'en');
 ---
 
-<BaseLayout title="RPG · David Silva" description="A home for the worldbuilding and behind-the-scenes of my tabletop campaign, Filhos da Tormenta.">
-  <h1>RPG</h1>
-
-  <p>
-    This is where I bring the tabletop side of my work into a place that can
-    hold it. I run a campaign called <strong>Filhos da Tormenta</strong>, started
-    in 2025 and still going, with an ending planned for around 2028. For two years
-    now I have been writing its world, its characters, and the threads that tie
-    them together, and most of that has lived in scattered notes. This section is
-    the effort to give it a proper home.
-  </p>
-
-  <p>
-    We play <strong>Tormenta 20</strong>, the system published by
-    <strong>Jambô Editora</strong>, a Brazilian studio. I also have a long-standing
-    soft spot for <strong>Vampire: The Masquerade</strong>, and some of what shows
-    up here will lean on that love for a darker, character-first kind of story.
-  </p>
-
-  <p>
-    I keep saying, on this site and off it, that the work I enjoy is turning
-    complexity into something another person can pick up and use. A campaign is
-    exactly that problem in another form, so expect the same instinct here: notes
-    made legible, decisions explained, a world you could step into.
-  </p>
-
-  <h2>What is coming here</h2>
-  <ul>
-    <li><strong>The world.</strong> Places, factions, and the lore behind Filhos da Tormenta.</li>
-    <li><strong>Sessions.</strong> Recaps and the loose threads still in play.</li>
-    <li><strong>Behind the screen.</strong> How I build encounters, pace an arc, and keep a long campaign coherent.</li>
-  </ul>
-
-  <p class="soon">Nothing published yet. The first entries are on their way.</p>
+<BaseLayout title={`${data.title} · David Silva`} description={data.description}>
+  <h1>{data.title}</h1>
+  <div class="prose">
+    <Content />
+  </div>
 </BaseLayout>
 
 <style>
-  .soon {
+  .prose :global(ul) {
+    padding-left: var(--space-5);
+  }
+  .prose :global(li) {
+    margin-bottom: var(--space-2);
+  }
+  .prose :global(p:last-child) {
     color: var(--muted);
     font-style: italic;
   }

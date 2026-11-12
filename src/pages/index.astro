@@ -3,8 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import RotatingText from '../components/RotatingText.astro';
 import PostCard from '../components/PostCard.astro';
 import { getPosts, postHref } from '../lib/blog';
+import { getPage } from '../lib/pages';
 
 const roles = ['software engineer', 'teacher', 'dungeon master'];
+
+const { Content: Bio } = await getPage('home', 'en');
 
 const posts = await getPosts('en');
 const latest = posts.slice(0, 3);
@@ -15,14 +18,9 @@ const rest = posts.slice(3);
   <h1 class="hero">
     David Silva, a <RotatingText items={roles} />
   </h1>
-  <p>
-    I build AI systems that run in production, the multi-agent kind, where the
-    hard part is getting many moving pieces to behave.
-  </p>
-  <p>
-    The thread between all of it is the same: I like turning complexity into
-    something clear enough to hand to another person.
-  </p>
+  <div class="bio">
+    <Bio />
+  </div>
 
   {
     latest.length > 0 && (
