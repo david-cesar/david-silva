@@ -14,9 +14,9 @@ professional hub. Minimalist editorial design, bilingual (English at root `/`,
 Brazilian Portuguese at `/pt/`), light/dark theme. Built with **Astro** (static
 output), hosted on **GitHub Pages** with the custom domain `davidsilva.site`.
 
-**Current status:** Astro project scaffolded and building. Fase 1 nearly done
-(Home, Blog listing, post pages, tags with filter, share/comment footer, one
-published post: the AI Glossary). Still missing: About page, deploy to GitHub
+**Current status:** Astro project scaffolded and building. Fase 1 content complete
+(Home, Blog listing + post pages, tags with filter, share/comment footer, About,
+RPG landing; one published post: the AI Glossary). Still missing: deploy to GitHub
 Pages, and the SEO/quality pass. See `guia-implementacao-site.md` §9 for the
 live checklist.
 
@@ -50,7 +50,7 @@ Decided deliberately; keep new UI consistent with it.
   invent one-off rem values.
 - **Color:** only `--*` CSS variables from `global.css` (theme-aware). No hardcoded
   hex in components. Palette is Tormenta 20 (see `global.css` header comment).
-- **Header:** home icon (left) + nav (Blog, About) + LangToggle + ThemeToggle
+- **Header:** home icon (left) + nav (Blog, RPG, About) + LangToggle + ThemeToggle
   (right). No bottom border — separated by whitespace (`--space-7`). Active nav
   item gets a Copper underline via `.active`.
 - **Icons:** stroke-style SVG (`stroke="currentColor"`), never emoji.
