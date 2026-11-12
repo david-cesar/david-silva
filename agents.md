@@ -76,6 +76,17 @@ Decided deliberately; keep new UI consistent with it.
   `postHref`, `tagHref`, `blogBase`, `formatDate`). Use these instead of building
   paths or sorting by hand. Tags are clickable and generate `/blog/tag/[tag]/`
   pages (and the PT mirror).
+- **Page copy** (About, RPG, home bio) lives as plain markdown in
+  `src/content/pages/` named `<page>-<lang>.md` (e.g. `about-en.md`, `about-pt.md`,
+  `home-en.md`). The `.astro` page renders it via `getPage(name, lang)` from
+  `src/lib/pages.ts`. Edit the prose in the markdown, never in the `.astro`.
+  Filenames use a hyphen before the locale (the content loader strips dots from
+  ids, so `about.en.md` would collide).
+- **PT→EN writing flow:** David writes and edits the Portuguese himself (it is his
+  real voice). When the PT of a post or page changes, the agent produces the
+  matching EN as an **independent rewrite, not a literal translation**, following
+  the writing voice rules below. Do not touch the PT unless asked; the English is
+  what the agent maintains.
 - **i18n:** English is the default locale with no prefix (`/`, `/blog/`); Portuguese
   lives under `/pt/`. UI strings go in `src/i18n/ui.ts` — never hardcode user-facing
   text in components.
