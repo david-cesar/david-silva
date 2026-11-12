@@ -90,6 +90,43 @@ Decided deliberately; keep new UI consistent with it.
   API keys, or internal/SAP data. The `.gitignore` already excludes env files.
 - Do not commit anything you would not put on a public web page.
 
+## Writing voice and copy rules
+
+These are non-negotiable for every user-facing text on the site (home, About,
+RPG, blog posts, page copy, UI strings). They match David's LinkedIn post rules;
+the canonical source for the posts is
+`mba-ai-software-engineering/posts-linkedin/ESPECIFICACOES-POSTS.md`. When writing
+copy, follow these without being reminded:
+
+1. **No em-dashes or en-dashes (— –) in prose.** David reads them as a tell of
+   LLM-written text and rewrites to avoid them. Use a comma, a colon, a full stop
+   (two sentences), or parentheses instead. A hyphen inside a compound word
+   (`read-only`, `trade-offs`) is fine.
+2. **No emoji in pages or content.** Use clean stroke-style SVG icons, never
+   decorative emoji. (Also stated in Code conventions; it applies to copy too.)
+3. **No universalist claims about LLMs/AI.** Frame things as "our use case" or "the
+   work I do", not as universal law. Decisions are choices under constraints, with
+   trade-offs named, not rules that always hold.
+4. **No AI-writing clichés.** Avoid "it's worth noting", "in summary", "it's
+   important to note", "honestly", "two honesties", labeled lists of "honest
+   caveats", and similar filler. Read it aloud: if it sounds like an AI report
+   instead of an engineer talking to a colleague, rewrite it.
+5. **Conversational but technical.** Plain, precise language. Explain a
+   non-obvious domain term on first use by rewriting the sentence in plain words,
+   rather than appending "term (explanation)". Universal terms (JSON, SQL, API,
+   HTTP, cache, retry, timeout) need no explanation.
+6. **No generic engagement endings.** Do not close with a question, a call for
+   comments, or a filler sign-off. End on a specific statement that finishes the
+   thought.
+7. **Portuguese is an independent rewrite, not a literal translation.** Write PT
+   so it reads naturally to a Brazilian (pt-BR), keeping the same voice and these
+   same rules. EN and PT are two separate pieces of writing, not one translated.
+8. **Brand framing.** The site positions three facets, engineer / teacher /
+   dungeon master, tied into a narrative (side A professional + side B human that
+   explains how David thinks), never a loose list. Employers may be named (SAP,
+   Zallpy, Omnibees, HSystem) but never the internal purpose/domain of the systems
+   he built.
+
 ## Git
 
 - **Identity is repo-local on purpose.** `user.name` / `user.email` are set with
