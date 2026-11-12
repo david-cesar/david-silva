@@ -9,6 +9,7 @@ const t = useTranslations(lang);
 
 const homeHref = localizedPath('/', lang);
 const blogHref = localizedPath('/blog/', lang);
+const rpgHref = localizedPath('/rpg/', lang);
 const aboutHref = localizedPath('/about/', lang);
 
 // Strip trailing slash for comparison; treat empty as root.
@@ -41,6 +42,7 @@ const isActive = (href: string) => {
 
   <nav>
     <a href={blogHref} class:list={[{ active: isActive(blogHref) }]}>{t('nav.blog')}</a>
+    <a href={rpgHref} class:list={[{ active: isActive(rpgHref) }]}>{t('nav.rpg')}</a>
     <a href={aboutHref} class:list={[{ active: isActive(aboutHref) }]}>{t('nav.about')}</a>
     <LangToggle />
     <ThemeToggle />

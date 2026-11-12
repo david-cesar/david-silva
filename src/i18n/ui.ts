@@ -4,12 +4,14 @@ export const defaultLang = 'en';
 export const ui = {
   en: {
     'nav.blog': 'Blog',
+    'nav.rpg': 'RPG',
     'nav.about': 'About',
     'nav.home': 'Home',
     'post.readingTime': 'min read',
   },
   pt: {
     'nav.blog': 'Blog',
+    'nav.rpg': 'RPG',
     'nav.about': 'Sobre',
     'nav.home': 'Início',
     'post.readingTime': 'min de leitura',
