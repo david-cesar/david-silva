@@ -2,8 +2,10 @@
 title: Home bio
 ---
 
-I build AI systems that run in production, the multi-agent kind, where the hard
-part is getting many moving pieces to behave.
+What I really do is turn things that look complicated into things that work in
+the hands of the people who need them, whether that means building a system full
+of flows and AI agents, teaching a class to code, or creating an RPG world that
+cannot lose its thread after years.
 
-The thread between all of it is the same: I like turning complexity into something
-clear enough to hand to another person.
+And that is what I write about here: what I have learned, and keep learning, by
+building, teaching, and creating.

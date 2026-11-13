@@ -3,39 +3,34 @@ title: About
 description: Software engineer working on AI systems in production. What I work on and how I think.
 ---
 
-I am a software engineer. I started in full-stack work, .NET and Angular,
-building the kind of systems a business actually runs on: a CMS, a hotel booking
-engine wired to a dozen external APIs, a channel manager keeping reservations in
-sync. Over time the work pulled toward AI. First came retrieval-augmented
-chatbots that answer from a product's own docs, at Omnibees through HSystem, and
-then, at SAP through Zallpy, multi-agent systems running in production, where
-dozens of agents cooperate inside a state machine and the hard part is rarely the
-model and almost always getting the pieces to behave together.
+Hi, my name is David Silva and I am a software engineer.
 
-I came to this through a longer path than a job title shows. I like problems
-where the mess is the point: ambiguous requirements, systems that have to keep
-running while you change them, decisions made under constraints rather than in a
-textbook. The work I am proud of is less about a clever trick and more about
-turning something tangled into something another person can pick up and use.
+My path in this field started in full-stack work, maintaining systems built on
+.NET Framework, AngularJS, and MySQL on AWS: content management systems (CMS), a
+hotel booking engine wired to a dozen external APIs, and a channel manager keeping
+reservations in sync with a range of other external and proprietary systems.
 
-That instinct did not start with code. Before engineering was my whole job I
-taught computing to classes of mixed ages, and I hold a teaching degree. The
-habit stuck: an idea only counts once someone else can act on it. That is still
-how I judge a design, by whether a teammate can read it, extend it, and trust it
-without me in the room. A lot of what I write here comes from trying to explain,
-clearly, things I had to learn the hard way.
+As AI arrived, so did the chance to work with newer stacks like .NET Core, Python,
+Angular, MongoDB, and Postgres on AWS, Azure, and SAP BTP: building RAG chatbots
+that answer from a product's own documentation and from the context of the
+conversation, and multi-agent systems where dozens of agents cooperate inside a
+state machine to follow activity flows and use tools to deliver the expected
+result.
 
-Away from the keyboard, I have been the dungeon master of the same tabletop RPG
-campaign for a couple of years. It is a hobby, but not an idle one: keeping a
-world coherent across dozens of sessions, with its own threads, characters, and
-rules reacting in real time, turns out to exercise the same muscles good software
-does.
+The work I am proud of has less to do with a clever trick and more with turning
+complex flows and requirements into something another person can use smoothly,
+something that makes their day easier.
 
-The thread across all of it is the same: I like taking complexity and giving it a
-shape clear enough to hand to someone else. This site is where I write that down.
+That instinct did not start with code. Before engineering was my whole job, I
+taught computing to classes of mixed ages in the public school system, and the
+habit stuck: take complex concepts and flows and shape them so anyone else can
+understand and use them intuitively, and get value from them.
 
-## Elsewhere
+Away from the keyboard: for a few years now I have been running tabletop RPG
+campaigns in Tormenta 20, a Brazilian setting. It is a hobby I gave its own
+section on this site, so keep an eye out, you might find some of that "work" here
+too. After all, little is as entertaining as keeping a whole world coherent across
+dozens of sessions, with its own plots, characters, and rules reacting in real
+time.
 
-You can find me on [GitHub](https://github.com/david-cesar),
-[LinkedIn](https://www.linkedin.com/in/david-cesar-silva/), or by
-[email](mailto:silva.davidcesar@gmail.com).
+I hope something here can help you in some way.

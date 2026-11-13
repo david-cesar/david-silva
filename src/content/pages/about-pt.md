@@ -3,40 +3,33 @@ title: Sobre
 description: Engenheiro de software que trabalha com sistemas de IA em produção. No que eu trabalho e como eu penso.
 ---
 
-Sou engenheiro de software. Comecei no full-stack, .NET e Angular, construindo o
-tipo de sistema sobre o qual uma empresa de fato opera: um CMS, um motor de
-reservas de hotelaria ligado a uma dúzia de APIs externas, um gerenciador de
-canais mantendo reservas em sincronia. Com o tempo o trabalho foi puxando para a
-IA. Primeiro vieram os chatbots com RAG que respondem a partir da própria
-documentação do produto, na Omnibees através da HSystem, e depois, na SAP através
-da Zallpy, sistemas multiagente rodando em produção, onde dezenas de agentes
-cooperam dentro de uma máquina de estados e a parte difícil quase nunca é o modelo
-e quase sempre é fazer as peças se comportarem juntas.
+Olá, meu nome é David Silva e sou engenheiro de software. 
 
-Cheguei aqui por um caminho mais longo do que um cargo revela. Gosto de problemas
-em que a bagunça é o ponto: requisitos ambíguos, sistemas que precisam continuar
-rodando enquanto você os muda, decisões tomadas sob restrições e não no quadro
-branco. O trabalho de que me orgulho tem menos a ver com um truque esperto e mais
-com transformar algo emaranhado em algo que outra pessoa consegue pegar e usar.
+Minha jornada nessa área começou como full-stack trabalhando com sistemas .NET
+Framework, AngularJS, MySQL na AWS, dando manutenção em sistemas de gerenciamento de conteúdo (CMS),
+de reservas de hotelaria ligado a uma dúzia de APIs externas e um gerenciador de
+canais mantendo reservas em sincronia com diversos outros sistemas externos e proprietários. 
+
+Com o advento da IA vieram as oportunidades de trabalhar com stacks mais novas como .NET Core, 
+Python, Angular, MongoDB, Postgress em AWS, Azure, SAP BTP para implementar chatbots 
+com RAG que respondem a partir da própria documentação do produto e no contexto da conversa
+e sistemas multiagenticos onde dezenas de agentes cooperam dentro de uma máquina de 
+estados para seguir fluxos de atividades e uso de ferramentas para entregar o resultado esperado.
+
+Mas o trabalho do qual me orgulho tem menos a ver com um truque esperto feito e mais
+com transformar fluxos e requisitos complexos em algo que outra pessoa consegue usar
+de forma fluída e que facilite seu dia-a-dia.
 
 Esse instinto não começou com código. Antes de a engenharia ser meu trabalho
-inteiro, dei aula de informática para turmas de idades variadas, e tenho uma
-licenciatura. O hábito ficou: uma ideia só vale quando outra pessoa consegue agir
-a partir dela. É assim que ainda julgo um design, pela capacidade de um colega
-ler, estender e confiar nele sem eu estar na sala. Boa parte do que escrevo aqui
-vem de tentar explicar, com clareza, coisas que aprendi do jeito difícil.
+interino, fui professor de informática para turmas de idades variadas na rede pública e
+podemos dizer que o hábito ficou: transformar conceitos e fluxos complexos de forma que
+qualquer outra pessoa possa entender e usar de forma intuitiva e valiosa.
 
-Longe do teclado, há alguns anos conduzo como mestre a mesma campanha de RPG de
-mesa. É um hobby, mas não um hobby à toa: manter um mundo coerente ao longo de
+Longe do teclado: há alguns anos conduzo campanhas de RPG de mesa de Tormenta 20, um cenário 
+de RPG brasileiro. É um hobby para o qual também reservei uma sessão inteira nesse site, então
+fique atento que talvez você ache conteúdo desse "trabalho" por aqui, afinal, nada mais
+entretem do que ter que manter manter um mundo inteiro coerente ao longo de
 dezenas de sessões, com suas próprias tramas, personagens e regras reagindo em
-tempo real, acaba exercitando os mesmos músculos que um bom software exige.
+tempo real.
 
-O fio que liga tudo isso é o mesmo: gosto de pegar a complexidade e lhe dar uma
-forma clara o bastante para entregar na mão de outra pessoa. Este site é onde eu
-coloco isso por escrito.
-
-## Em outros lugares
-
-Você me encontra no [GitHub](https://github.com/david-cesar), no
-[LinkedIn](https://www.linkedin.com/in/david-cesar-silva/), ou por
-[e-mail](mailto:silva.davidcesar@gmail.com).
+Espero que alguma coisa aqui possa te ajudar de alguma forma.
