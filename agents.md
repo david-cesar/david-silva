@@ -137,6 +137,14 @@ copy, follow these without being reminded:
    explains how David thinks), never a loose list. Employers may be named (SAP,
    Zallpy, Omnibees, HSystem) but never the internal purpose/domain of the systems
    he built.
+9. **Argument structure.** Open an essay by presenting its problem or thesis.
+   Develop the argument through connected paragraphs, and use headings to mark
+   shifts in the reasoning rather than to separate sources. Close by bringing the
+   argument to a conclusion, not by introducing another source or topic.
+10. **Integrate sources into the argument.** Use sources as evidence for specific
+    claims and cite them inline where they support the point. Analyze and connect
+    the ideas across sources; do not make a separate section for each reference
+    unless the user explicitly asks for a source-by-source review.
 
 ## Git
 
