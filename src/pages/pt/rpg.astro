@@ -1,11 +1,17 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getPage } from '../../lib/pages';
+import { createHreflangAlternates } from '../../lib/seo';
 
 const { Content, data } = await getPage('rpg', 'pt');
 ---
 
-<BaseLayout title={`${data.title} · David Silva`} description={data.description} lang="pt-BR">
+<BaseLayout
+  title="Campanha de RPG de mesa | David Silva"
+  description={data.description}
+  lang="pt-BR"
+  alternates={createHreflangAlternates('/rpg/', '/pt/rpg/')}
+>
   <h1>{data.title}</h1>
   <div class="prose">
     <Content />

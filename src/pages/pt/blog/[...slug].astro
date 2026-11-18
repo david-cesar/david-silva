@@ -1,18 +1,38 @@
 ---
 import { getCollection, render } from 'astro:content';
 import PostLayout from '../../../layouts/PostLayout.astro';
+import { postHref } from '../../../lib/blog';
+import { createHreflangAlternates } from '../../../lib/seo';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog-pt', ({ data }) =>
     import.meta.env.PROD ? data.draft !== true : true,
   );
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+  const englishPosts = await getCollection('blog-en', ({ data }) =>
+    import.meta.env.PROD ? data.draft !== true : true,
+  );
+  return posts.map((post) => {
+    const translated = post.data.translationKey
+      ? englishPosts.find(
+          (candidate) =>
+            candidate.data.translationKey === post.data.translationKey,
+        )
+      : undefined;
+    const alternates = translated
+      ? createHreflangAlternates(
+          postHref(translated.id, 'en'),
+          postHref(post.id, 'pt'),
+        )
+      : undefined;
+
+    return {
+      params: { slug: post.id },
+      props: { post, alternates },
+    };
+  });
 }
 
-const { post } = Astro.props;
+const { post, alternates } = Astro.props;
 const { Content } = await render(post);
 const { data } = post;
 ---
@@ -25,6 +45,11 @@ const { data } = post;
   tags={data.tags}
   lang="pt"
   linkedinUrl={data.linkedinUrl}
+  seoTitle={data.seo?.title}
+  seoDescription={data.seo?.description}
+  ogImage={data.seo?.image?.src}
+  ogImageAlt={data.seo?.image?.alt}
+  alternates={alternates}
 >
   <Content />
 </PostLayout>

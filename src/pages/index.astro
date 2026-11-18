@@ -4,6 +4,7 @@ import RotatingText from '../components/RotatingText.astro';
 import PostCard from '../components/PostCard.astro';
 import { getPosts, postHref } from '../lib/blog';
 import { getPage } from '../lib/pages';
+import { createHreflangAlternates } from '../lib/seo';
 
 const roles = ['software engineer', 'teacher', 'dungeon master'];
 
@@ -14,7 +15,11 @@ const latest = posts.slice(0, 3);
 const rest = posts.slice(3);
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="David Silva | AI Engineering and Software"
+  description="Writing about AI engineering, production systems, teaching, and building software that solves real problems."
+  alternates={createHreflangAlternates('/', '/pt/')}
+>
   <h1 class="hero">
     David Silva, a <RotatingText items={roles} />
   </h1>

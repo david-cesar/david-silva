@@ -1,13 +1,19 @@
 ---
-// Language toggle: links the current page to its counterpart in the other locale.
-// EN lives at root (/...), PT lives under /pt/...
+interface Props {
+  href?: string;
+}
+
+const { href } = Astro.props;
 const path = Astro.url.pathname;
 const isPt = path === '/pt' || path.startsWith('/pt/');
 
 // Build the counterpart path.
 let target: string;
 let label: string;
-if (isPt) {
+if (href) {
+  target = href;
+  label = isPt ? 'EN' : 'PT';
+} else if (isPt) {
   // strip leading /pt → EN
   target = path.replace(/^\/pt/, '') || '/';
   label = 'EN';

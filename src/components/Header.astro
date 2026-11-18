@@ -3,6 +3,11 @@ import ThemeToggle from './ThemeToggle.astro';
 import LangToggle from './LangToggle.astro';
 import { getLangFromPath, useTranslations, localizedPath } from '../i18n/ui';
 
+interface Props {
+  languageTarget?: string;
+}
+
+const { languageTarget } = Astro.props;
 const pathname = Astro.url.pathname;
 const lang = getLangFromPath(pathname);
 const t = useTranslations(lang);
@@ -44,7 +49,7 @@ const isActive = (href: string) => {
     <a href={blogHref} class:list={[{ active: isActive(blogHref) }]}>{t('nav.blog')}</a>
     <a href={rpgHref} class:list={[{ active: isActive(rpgHref) }]}>{t('nav.rpg')}</a>
     <a href={aboutHref} class:list={[{ active: isActive(aboutHref) }]}>{t('nav.about')}</a>
-    <LangToggle />
+    <LangToggle href={languageTarget} />
     <ThemeToggle />
   </nav>
 </header>

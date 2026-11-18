@@ -4,6 +4,7 @@ import RotatingText from '../../components/RotatingText.astro';
 import PostCard from '../../components/PostCard.astro';
 import { getPosts, postHref } from '../../lib/blog';
 import { getPage } from '../../lib/pages';
+import { createHreflangAlternates } from '../../lib/seo';
 
 const roles = ['engenheiro de software', 'professor', 'mestre de RPG'];
 
@@ -14,7 +15,12 @@ const latest = posts.slice(0, 3);
 const rest = posts.slice(3);
 ---
 
-<BaseLayout lang="pt-BR">
+<BaseLayout
+  title="David Silva | Engenharia de IA e Software"
+  description="Textos sobre engenharia de IA, sistemas em produção, ensino e criação de software para resolver problemas reais."
+  lang="pt-BR"
+  alternates={createHreflangAlternates('/', '/pt/')}
+>
   <h1 class="hero">
     David Silva, <RotatingText items={roles} />
   </h1>

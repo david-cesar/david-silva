@@ -2,29 +2,127 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Seo from '@jdevalk/astro-seo-graph/Seo.astro';
+import { createPageGraph, SITE_URL, type HreflangAlternates } from '../lib/seo';
 
 interface Props {
   title?: string;
   description?: string;
   lang?: string;
+  alternates?: HreflangAlternates;
+  pageKind?: 'webpage' | 'profile' | 'collection' | 'article';
+  schemaTitle?: string;
+  publishDate?: Date;
+  updatedDate?: Date;
+  tags?: string[];
+  ogImage?: string;
+  ogImageAlt?: string;
 }
 
 const {
-  title = 'David Silva',
-  description = 'Software engineer, teacher, and dungeon master.',
+  title: pageTitle,
+  description: pageDescription,
   lang = 'en',
+  alternates,
+  pageKind = 'webpage',
+  schemaTitle,
+  publishDate,
+  updatedDate,
+  tags = [],
+  ogImage: pageOgImage,
+  ogImageAlt: pageOgImageAlt,
 } = Astro.props;
+
+const isPortuguese = lang.toLowerCase().startsWith('pt');
+const title =
+  pageTitle ??
+  (isPortuguese
+    ? 'David Silva | Engenharia de IA e Software'
+    : 'David Silva | AI Engineering and Software');
+const description =
+  pageDescription ??
+  (isPortuguese
+    ? 'Textos sobre engenharia de IA, sistemas em produção, ensino e criação de software para resolver problemas reais.'
+    : 'Writing about AI engineering, production systems, teaching, and building software that solves real problems.');
+const site = Astro.site;
+if (!site) {
+  throw new Error('Set the production site URL in astro.config.mjs before building SEO metadata.');
+}
+
+const canonical = new URL(Astro.url.pathname, site).href;
+const homePath = isPortuguese ? '/pt/' : '/';
+const blogPath = isPortuguese ? '/pt/blog/' : '/blog/';
+const otherLocale = isPortuguese ? 'en' : 'pt-BR';
+const alternateHref = alternates?.entries.find(
+  (entry) => entry.hreflang === otherLocale,
+)?.href;
+const languageTarget = alternateHref
+  ? new URL(alternateHref).pathname
+  : isPortuguese
+    ? '/blog/'
+    : '/pt/blog/';
+const breadcrumbs = [{ name: isPortuguese ? 'Início' : 'Home', url: new URL(homePath, SITE_URL).href }];
+if (Astro.url.pathname.includes('/blog/')) {
+  breadcrumbs.push({ name: 'Blog', url: new URL(blogPath, SITE_URL).href });
+  if (Astro.url.pathname !== blogPath) {
+    breadcrumbs.push({ name: schemaTitle ?? title, url: canonical });
+  }
+} else if (Astro.url.pathname !== homePath) {
+  breadcrumbs.push({ name: schemaTitle ?? title, url: canonical });
+}
+
+const graph = createPageGraph({
+  url: canonical,
+  title: schemaTitle ?? title,
+  description,
+  lang: isPortuguese ? 'pt-BR' : 'en',
+  kind: pageKind,
+  publishDate,
+  updatedDate,
+  tags,
+  breadcrumbs,
+});
+const ogImage = pageOgImage
+  ? new URL(pageOgImage, SITE_URL).href
+  : new URL('/og-default.jpg', SITE_URL).href;
+const ogImageAlt =
+  pageOgImageAlt ??
+  (isPortuguese
+    ? 'Prévia do site de David Silva sobre engenharia de software e IA'
+    : 'Preview of David Silva’s site about software engineering and AI');
 ---
 
 <!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <Seo
+      title={title}
+      description={description}
+      canonical={canonical}
+      siteName="David Silva"
+      locale={isPortuguese ? 'pt_BR' : 'en_US'}
+      ogImage={ogImage}
+      ogImageAlt={ogImageAlt}
+      ogImageWidth={1200}
+      ogImageHeight={675}
+      twitter={{ card: 'summary_large_image' }}
+      author="David Silva"
+      graph={graph}
+      alternates={alternates}
+      extraLinks={[
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'sitemap', href: '/sitemap-index.xml' },
+        {
+          rel: 'alternate',
+          type: 'application/rss+xml',
+          title: 'David Silva RSS',
+          href: '/feed.xml',
+        },
+      ]}
+    />
     <!-- Anti-flash: set theme before first paint -->
     <script is:inline>
       const saved = localStorage.getItem('theme');
@@ -35,7 +133,7 @@ const {
     </script>
   </head>
   <body>
-    <Header />
+    <Header languageTarget={languageTarget} />
     <main>
       <slot />
     </main>

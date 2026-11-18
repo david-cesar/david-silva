@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import TagList from '../components/TagList.astro';
 import PostFooter from '../components/PostFooter.astro';
 import { formatDate, blogBase, type Lang } from '../lib/blog';
+import type { HreflangAlternates } from '../lib/seo';
 
 interface Props {
   title: string;
@@ -12,14 +13,43 @@ interface Props {
   tags: string[];
   lang: Lang;
   linkedinUrl?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  alternates?: HreflangAlternates;
 }
 
-const { title, description, pubDate, updatedDate, tags, lang, linkedinUrl } =
-  Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  tags,
+  lang,
+  linkedinUrl,
+  seoTitle,
+  seoDescription,
+  ogImage,
+  ogImageAlt,
+  alternates,
+} = Astro.props;
 const htmlLang = lang === 'pt' ? 'pt-BR' : 'en';
 ---
 
-<BaseLayout title={`${title} · David Silva`} description={description} lang={htmlLang}>
+<BaseLayout
+  title={`${seoTitle ?? title} | David Silva`}
+  schemaTitle={title}
+  description={seoDescription ?? description}
+  lang={htmlLang}
+  pageKind="article"
+  publishDate={pubDate}
+  updatedDate={updatedDate}
+  tags={tags}
+  ogImage={ogImage}
+  ogImageAlt={ogImageAlt}
+  alternates={alternates}
+>
   <article>
     <p class="top-back">
       <a href={`${blogBase(lang)}/`}>{lang === 'pt' ? '← Voltar ao blog' : '← Back to blog'}</a>

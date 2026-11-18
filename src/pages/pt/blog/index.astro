@@ -2,14 +2,17 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PostCard from '../../../components/PostCard.astro';
 import { getPosts } from '../../../lib/blog';
+import { createHreflangAlternates } from '../../../lib/seo';
 
 const posts = await getPosts('pt');
 ---
 
 <BaseLayout
-  title="Blog · David Silva"
-  description="Textos sobre engenharia de IA e construção de sistemas em produção."
+  title="Blog de Engenharia de IA | David Silva"
+  description="Textos práticos sobre engenharia de IA, sistemas em produção e decisões para construir software que funcione."
   lang="pt-BR"
+  pageKind="collection"
+  alternates={createHreflangAlternates('/blog/', '/pt/blog/')}
 >
   <h1>Blog</h1>
   {

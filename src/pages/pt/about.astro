@@ -1,11 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getPage } from '../../lib/pages';
+import { createHreflangAlternates } from '../../lib/seo';
 
 const { Content, data } = await getPage('about', 'pt');
 ---
 
-<BaseLayout title={`${data.title} · David Silva`} description={data.description} lang="pt-BR">
+<BaseLayout
+  title="Sobre David Silva | Engenheiro de Software"
+  description={data.description}
+  lang="pt-BR"
+  pageKind="profile"
+  alternates={createHreflangAlternates('/about/', '/pt/about/')}
+>
   <h1>{data.title}</h1>
   <div class="prose">
     <Content />

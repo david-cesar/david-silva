@@ -19,8 +19,9 @@ const { tag, posts } = Astro.props;
 ---
 
 <BaseLayout
-  title={`Posts tagged "${tag}" · David Silva`}
-  description={`Posts tagged ${tag}.`}
+  title={`Articles about ${tag} | David Silva`}
+  description={`Browse articles about ${tag}, AI engineering, and software, with practical lessons from production systems.`}
+  pageKind="collection"
 >
   <p class="crumb"><a href="/blog/">← Blog</a></p>
   <h1>Tagged: {tag}</h1>
