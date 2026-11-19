@@ -1,43 +1,25 @@
 # davidsilva.site
 
-Source for my personal website — a technical blog, project portfolio, and
-professional hub, served at **[davidsilva.site](https://davidsilva.site)**.
+The source code for David Silva's personal website, a bilingual home for
+technical writing, professional information, and tabletop role-playing content.
 
-> **Status:** In development. Astro site scaffolded and building; Home, Blog, and
-> the first post (the AI Glossary) are in place. About page and deploy are next.
+## Features
 
-## Overview
+- English pages at the root and Brazilian Portuguese pages under `/pt/`
+- Technical blog with topic tags and RSS feed
+- Home, About, and tabletop RPG pages
+- Light and dark themes
+- Static site generation with Astro
 
-| | |
-|---|---|
-| **Direction** | Minimalist editorial (text-first, tag-driven) |
-| **Languages** | Bilingual — English (root `/`) + Brazilian Portuguese (`/pt/`) |
-| **Theme** | Light/dark toggle, single accent color |
-| **Stack** | [Astro](https://astro.build) (static output; React islands when needed) |
-| **Hosting** | GitHub Pages + custom domain `davidsilva.site` (free, auto HTTPS) |
-| **Phase 1 scope** | Home + Blog + About |
+## Development
 
-## Documentation
-
-- **[`guia-implementacao-site.md`](./guia-implementacao-site.md)** — full
-  implementation guide: architecture, folder layout, i18n, theming,
-  GitHub Pages + DNS setup, deploy workflow, and an ordered build checklist.
-- **[`sites-desenvolvedores-ia.md`](./sites-desenvolvedores-ia.md)** — curated
-  list of influential AI developer sites used as visual/structural references.
-
-## Getting started (once the site is scaffolded)
+Requires Node.js `>=22.23.4`.
 
 ```bash
 npm install
-npm run dev      # local dev server
-npm run build    # static build → dist/
+npm run dev
+npm run build
+npm run preview
 ```
 
-Deploy is automated via GitHub Actions on push to `main` (see guide §8).
-
-## Notes
-
-- The published site is public by nature. **Never commit secrets** (`.env`,
-  tokens, internal data) — the `.gitignore` already excludes env files.
-- This repo is **private**. Publishing with a custom domain on GitHub Pages
-  requires either making the repo public or having GitHub Pro (see guide §8.4).
+The production build is generated in `dist/`.

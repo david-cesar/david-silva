@@ -1,32 +1,18 @@
 # agents.md
 
 Operational guidance for AI agents working in this repository. This is the
-**single source of truth** for how to work here. `CLAUDE.md` points to this file.
+single source of truth for repository-specific conventions. `CLAUDE.md` points
+to this file.
 
-For deep architecture, i18n, theming, and deploy details, see
-**[`guia-implementacao-site.md`](./guia-implementacao-site.md)** — do not duplicate
-that content here; link to it.
+Use this file and the source code for implementation conventions. The README
+provides a brief project overview and development commands.
 
 ## What this is
 
 Source for **davidsilva.site** — a personal technical blog, project portfolio, and
 professional hub. Minimalist editorial design, bilingual (English at root `/`,
 Brazilian Portuguese at `/pt/`), light/dark theme. Built with **Astro** (static
-output), hosted on **GitHub Pages** with the custom domain `davidsilva.site`.
-
-**Current status:** Astro project scaffolded and building. Fase 1 content complete
-(Home, Blog listing + post pages, tags with filter, share/comment footer, About,
-RPG landing; one published post: the AI Glossary). Still missing: deploy to GitHub
-Pages, and the SEO/quality pass. See `guia-implementacao-site.md` §9 for the
-live checklist.
-
-## Project docs
-
-- [`README.md`](./README.md) — human entry point / overview.
-- [`guia-implementacao-site.md`](./guia-implementacao-site.md) — full build guide
-  (architecture, folder layout, i18n, theming, GitHub Pages + DNS, deploy, checklist).
-- [`sites-desenvolvedores-ia.md`](./sites-desenvolvedores-ia.md) — visual reference
-  list of influential AI developer sites, organized by criterion.
+output), configured for the `davidsilva.site` domain.
 
 ## Commands
 
@@ -37,12 +23,9 @@ npm run build    # static build → dist/
 npm run preview  # preview the production build
 ```
 
-Deploy is automated via GitHub Actions on push to `main` (guide §8, not set up
-yet). Do not deploy manually.
-
 ## Design system
 
-Decided deliberately; keep new UI consistent with it.
+Keep new UI consistent with the existing design system.
 
 - **Typography:** serif body (`--font-body`), sans-serif for headings and UI
   (`--font-ui`). Sizes come from the `--text-*` scale, never hardcoded.
@@ -65,8 +48,7 @@ Decided deliberately; keep new UI consistent with it.
   messages or internal docs.
 - **Static content** → `.astro` / `.md`. Reach for a **React island** (`client:*`)
   only for genuinely interactive pieces; never for static layout. Keep JS shipped to
-  the browser near zero. The home rotating text and the copy-link button are the
-  only inline scripts so far.
+  the browser near zero and keep scripts limited to necessary interactions.
 - **Posts** live in `src/content/blog-en/` and `src/content/blog-pt/` as markdown.
   Link an EN↔PT pair with a shared `translationKey` in frontmatter. Optional
   `linkedinUrl` adds a "Comment on LinkedIn" button to the post footer. Keep a
@@ -93,7 +75,8 @@ Decided deliberately; keep new UI consistent with it.
 - **Theme:** colors come from CSS custom properties switched by `data-theme` on
   `<html>`. Add colors as variables in `src/styles/global.css`; never hardcode hex
   values in components.
-- Match the structure and conventions already in the guide before inventing new ones.
+- Follow the established structure and conventions in the source before
+  introducing new patterns.
 
 ## Content & security
 
@@ -104,10 +87,8 @@ Decided deliberately; keep new UI consistent with it.
 ## Writing voice and copy rules
 
 These are non-negotiable for every user-facing text on the site (home, About,
-RPG, blog posts, page copy, UI strings). They match David's LinkedIn post rules;
-the canonical source for the posts is
-`mba-ai-software-engineering/posts-linkedin/ESPECIFICACOES-POSTS.md`. When writing
-copy, follow these without being reminded:
+RPG, blog posts, page copy, UI strings). When writing copy, follow these without
+being reminded:
 
 1. **No em-dashes or en-dashes (— –) in prose.** David reads them as a tell of
    LLM-written text and rewrites to avoid them. Use a comma, a colon, a full stop
