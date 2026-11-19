@@ -7,6 +7,10 @@ export const ui = {
     'nav.rpg': 'RPG',
     'nav.about': 'About',
     'nav.home': 'Home',
+    'nav.main': 'Main navigation',
+    'nav.openMenu': 'Open menu',
+    'nav.closeMenu': 'Close menu',
+    'language.switchTo': 'Switch to',
     'post.readingTime': 'min read',
   },
   pt: {
@@ -14,6 +18,10 @@ export const ui = {
     'nav.rpg': 'RPG',
     'nav.about': 'Sobre',
     'nav.home': 'Início',
+    'nav.main': 'Navegação principal',
+    'nav.openMenu': 'Abrir menu',
+    'nav.closeMenu': 'Fechar menu',
+    'language.switchTo': 'Mudar para',
     'post.readingTime': 'min de leitura',
   },
 } as const;

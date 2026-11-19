@@ -1,4 +1,6 @@
 ---
+import { getLangFromPath, useTranslations } from '../i18n/ui';
+
 interface Props {
   href?: string;
 }
@@ -6,6 +8,7 @@ interface Props {
 const { href } = Astro.props;
 const path = Astro.url.pathname;
 const isPt = path === '/pt' || path.startsWith('/pt/');
+const t = useTranslations(getLangFromPath(path));
 
 // Build the counterpart path.
 let target: string;
@@ -23,7 +26,26 @@ if (href) {
 }
 ---
 
-<a class="lang-toggle" href={target} aria-label={`Switch to ${label}`}>{label}</a>
+<a class="lang-toggle" href={target} aria-label={`${t('language.switchTo')} ${label}`}>
+  <span class="lang-label" aria-hidden="true">{label}</span>
+  <svg
+    class="lang-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="10"></circle>
+    <path d="M2 12h20"></path>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+  </svg>
+</a>
 
 <style>
   .lang-toggle {
@@ -38,9 +60,26 @@ if (href) {
     color: var(--text);
     text-decoration: none;
   }
+  .lang-icon {
+    display: none;
+  }
   .lang-toggle:hover {
     border-color: var(--accent);
     color: var(--accent);
     text-decoration: none;
+  }
+
+  @media (max-width: 550px) {
+    .lang-toggle {
+      min-width: 44px;
+      min-height: 44px;
+      justify-content: center;
+    }
+    .lang-label {
+      display: none;
+    }
+    .lang-icon {
+      display: block;
+    }
   }
 </style>

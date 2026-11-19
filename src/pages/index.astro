@@ -21,7 +21,8 @@ const rest = posts.slice(3);
   alternates={createHreflangAlternates('/', '/pt/')}
 >
   <h1 class="hero">
-    David Silva, a <RotatingText items={roles} />
+    <span class="hero-name">David Silva, a</span>
+    {' '}<span class="hero-role"><RotatingText items={roles} /></span>
   </h1>
   <div class="bio">
     <Bio />
@@ -63,8 +64,14 @@ const rest = posts.slice(3);
 
 <style>
   .hero {
-    font-size: var(--text-2xl);
+    font-size: clamp(1.75rem, 5.5vw, var(--text-2xl));
     margin-bottom: var(--space-5);
+  }
+  @media (max-width: 550px) {
+    .hero-role {
+      display: block;
+      min-height: 2.4em;
+    }
   }
   section {
     margin-top: var(--space-6);

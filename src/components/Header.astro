@@ -45,13 +45,62 @@ const isActive = (href: string) => {
     </svg>
   </a>
 
-  <nav>
-    <a href={blogHref} class:list={[{ active: isActive(blogHref) }]}>{t('nav.blog')}</a>
-    <a href={rpgHref} class:list={[{ active: isActive(rpgHref) }]}>{t('nav.rpg')}</a>
-    <a href={aboutHref} class:list={[{ active: isActive(aboutHref) }]}>{t('nav.about')}</a>
+  <div class="header-controls">
+    <nav class="desktop-nav" aria-label={t('nav.main')}>
+      <a href={blogHref} class:list={[{ active: isActive(blogHref) }]}>{t('nav.blog')}</a>
+      <a href={rpgHref} class:list={[{ active: isActive(rpgHref) }]}>{t('nav.rpg')}</a>
+      <a href={aboutHref} class:list={[{ active: isActive(aboutHref) }]}>{t('nav.about')}</a>
+    </nav>
     <LangToggle href={languageTarget} />
     <ThemeToggle />
-  </nav>
+    <button
+      class="menu-trigger"
+      type="button"
+      aria-label={t('nav.openMenu')}
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-trigger
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <path d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="menu-overlay" id="mobile-menu" role="dialog" aria-modal="true" aria-label={t('nav.main')} hidden data-menu-overlay>
+    <div class="overlay-top">
+      <button class="menu-close" type="button" aria-label={t('nav.closeMenu')} data-menu-close>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <path d="m18 6-12 12M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <nav class="overlay-nav" aria-label={t('nav.main')}>
+      <a href={blogHref} class:list={[{ active: isActive(blogHref) }]}>{t('nav.blog')}</a>
+      <a href={rpgHref} class:list={[{ active: isActive(rpgHref) }]}>{t('nav.rpg')}</a>
+      <a href={aboutHref} class:list={[{ active: isActive(aboutHref) }]}>{t('nav.about')}</a>
+    </nav>
+  </div>
 </header>
 
 <style>
@@ -72,26 +121,178 @@ const isActive = (href: string) => {
   .home:hover {
     color: var(--accent);
   }
-  nav {
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .desktop-nav {
     display: flex;
     align-items: center;
     gap: var(--space-4);
     font-family: var(--font-ui);
     font-size: var(--text-sm);
   }
-  nav > a {
+  .desktop-nav > a {
     color: var(--muted);
     font-weight: 500;
     padding: var(--space-1) 0;
     border-bottom: 2px solid transparent;
     transition: color var(--transition), border-color var(--transition);
   }
-  nav > a:hover {
+  .desktop-nav > a:hover {
     color: var(--text);
     text-decoration: none;
   }
-  nav > a.active {
+  .desktop-nav > a.active {
     color: var(--text);
     border-bottom-color: var(--accent);
   }
+  .menu-trigger,
+  .menu-close {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .menu-trigger:hover,
+  .menu-close:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .menu-overlay[hidden] {
+    display: none;
+  }
+  :global(body.menu-open) {
+    overflow: hidden;
+  }
+  .menu-overlay {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-ui);
+  }
+  .menu-overlay::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background: var(--bg);
+    opacity: 0.96;
+    content: '';
+  }
+  .overlay-top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--space-6) var(--space-4);
+  }
+  .menu-close {
+    display: inline-flex;
+  }
+  .overlay-nav {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-5);
+    padding: 0 var(--space-4) var(--space-7);
+  }
+  .overlay-nav a {
+    color: var(--text);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .overlay-nav a.active,
+  .overlay-nav a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  @media (max-width: 550px) {
+    header {
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .home {
+      width: 44px;
+      height: 44px;
+      justify-content: center;
+    }
+    .header-controls {
+      gap: var(--space-2);
+    }
+    .desktop-nav {
+      display: none;
+    }
+    .menu-trigger {
+      display: inline-flex;
+    }
+  }
 </style>
+
+<script>
+  const trigger = document.querySelector<HTMLButtonElement>('[data-menu-trigger]');
+  const overlay = document.querySelector<HTMLElement>('[data-menu-overlay]');
+  const closeButton = overlay?.querySelector<HTMLButtonElement>('[data-menu-close]');
+
+  if (trigger && overlay && closeButton) {
+    const closeMenu = () => {
+      overlay.hidden = true;
+      trigger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      trigger.focus();
+    };
+
+    trigger.addEventListener('click', () => {
+      overlay.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('menu-open');
+      closeButton.focus();
+    });
+
+    closeButton.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', (event) => {
+      if (event.target === overlay) closeMenu();
+    });
+    overlay.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        overlay.hidden = true;
+        document.body.classList.remove('menu-open');
+      });
+    });
+    document.addEventListener('keydown', (event) => {
+      if (overlay.hidden) return;
+      if (event.key === 'Escape') {
+        closeMenu();
+        return;
+      }
+      if (event.key === 'Tab') {
+        const focusable = overlay.querySelectorAll<HTMLElement>('button:not([disabled]), a[href]');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
+    });
+  }
+</script>
