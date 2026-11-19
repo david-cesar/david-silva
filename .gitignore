@@ -9,6 +9,11 @@ dist/
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
 
 # OS / editor
 .DS_Store
