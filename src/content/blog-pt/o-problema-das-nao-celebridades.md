@@ -114,7 +114,7 @@ A IA pode ampliar o que conseguimos fazer, mas não substitui a decisão sobre o
 
 Adiar a adoção até entendermos os limites e como usar essas ferramentas/workflows na minha visão não é sinal de atraso, muitas vezes, é o primeiro passo para usá-las melhor.
 
-No próximo artigo, [Construindo fluxos de trabalho com IA](/pt/blog/construa-seu-fluxo-de-trabalho/), abordo um caminho prático para mapear processos, definir o uso de IA pelo time de desenvolvimento e no produto e avaliar os resultados ao invés de apenas reclamar.
+Estou construindo um próximo artigo onde quero apresentar um caminho prático para mapear processos, definir como a equipe de desenvolvimento e o produto podem usar IA e avaliar os resultados, em vez de apenas reclamar. Estou quase finalizando e logo mais ele estará por aqui.
 
 ## Material Complementar
 

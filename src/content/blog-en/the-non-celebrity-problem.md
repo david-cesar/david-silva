@@ -145,10 +145,7 @@ Waiting to adopt these tools and workflows until we understand their limits
 and how to use them is not a sign of falling behind. Often, it is the first
 step toward using them well.
 
-In the next article, [Building AI Workflows](/blog/building-workflows-with-ai/),
-I outline a practical approach to mapping processes, deciding how AI will be
-used in development and in the product, and evaluating the results rather
-than stopping at criticism.
+I'm working on another article about a practical way to map processes, decide how AI should be used by the development team and in the product, and evaluate the results instead of simply complaining. I'm nearly done, and it'll be here soon.
 
 ## Further reading
 
