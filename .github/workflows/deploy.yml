@@ -1,10 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  release:
+    types:
+      - released
 
 permissions:
   contents: read
@@ -15,6 +14,7 @@ concurrency:
 
 jobs:
   build:
+    if: ${{ github.event.release.target_commitish == 'main' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -30,6 +30,7 @@ jobs:
 
   deploy:
     needs: build
+    if: ${{ github.event.release.target_commitish == 'main' }}
     runs-on: ubuntu-latest
     permissions:
       pages: write

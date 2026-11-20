@@ -23,3 +23,9 @@ npm run preview
 ```
 
 The production build is generated in `dist/`.
+
+## Deployment
+
+GitHub Pages is deployed when a stable GitHub Release is published. Pre-releases
+do not trigger deployment, and releases whose target is not `main` are skipped.
+The workflow builds the commit referenced by the release's tag.
